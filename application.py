@@ -5,7 +5,7 @@ import jinja2
 
 jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader('workshop01'))
 
-app = Flask(__name__)
+application = Flask(__name__)
 
 text_dict = [
     "Logic will get you from A to B. Imagination will take you everywhere.",
@@ -17,7 +17,7 @@ text_dict = [
 ]
 
 
-@app.route('/', methods=['GET'])
+@application.route('/', methods=['GET'])
 def main():
     template = jinja_env.get_template('index.html')
     template_var = {
@@ -29,4 +29,5 @@ def main():
     return Response(template.render(template_var), mimetype='text/html'), 200
 
 
-app.run()
+if __name__ == "__main__":
+    application.run()
